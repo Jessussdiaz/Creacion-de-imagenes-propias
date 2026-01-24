@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+coches.db
+*.db
+.git/
+.gitignore
