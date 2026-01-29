@@ -8,24 +8,11 @@ app = Flask(__name__)
 
 
 def get_db_connection():
-    # En Docker queremos /sqlite3-db/coches.db
-    # En Windows/local, por defecto, coches.db en la carpeta del proyecto
-    default_db = "coches.db" if os.name == "nt" else "/sqlite3-db/coches.db"
-
-    db_path = os.environ.get("DB_PATH", default_db)
-
-    # Quita comillas si vienen de set DB_PATH="..."
-    db_path = db_path.strip().strip('"').strip("'")
-
-    # Crea directorio solo si hay carpeta real (y no "" o ".")
-    db_dir = os.path.dirname(db_path)
-    if db_dir and db_dir not in (".", "./", ".\\"):
-        os.makedirs(db_dir, exist_ok=True)
-
+    db_path = "coches.db" 
+    
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
-
 # --------------------------------------------------
 # HOME
 # --------------------------------------------------
