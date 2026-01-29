@@ -21,7 +21,7 @@ jobs:
       - name: Construcción y envío de la imagen
         uses: docker/build-push-action@v4
         with:
-          context:  
+          context: .
           push: true 
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
 
@@ -30,12 +30,12 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key:  ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             # 1. Bajar la última imagen de Docker Hub
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
             # 2. Detener y borrar el contenedor actual si existe
             docker stop flask-app || true
             docker rm flask-app || true
-            # 3. Arrancar el nuevo contenedor con persistencia
-            docker run -d --name flask-app -p 80:5000 -v ~/sqlite3-db:/sqlite3-db ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
+            # 3. Arrancar el nuevo contenedor
+            docker run -d --name flask-app -p 80:5000 ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
