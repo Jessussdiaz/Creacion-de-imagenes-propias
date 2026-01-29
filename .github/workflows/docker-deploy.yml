@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context:  
-          push: true
+          push: true 
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
 
       - name: Despliegue en servidor remoto
