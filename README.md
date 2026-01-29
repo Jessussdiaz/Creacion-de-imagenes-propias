@@ -23,6 +23,7 @@ En la actual práctica 6.3, se ha procedido a la creación de este repositorio e
 
 ---
 **Tecnologías utilizadas:**
+<br>
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
