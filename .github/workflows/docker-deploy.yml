@@ -6,7 +6,7 @@ on:
 
 jobs: 
   build-and-deploy: 
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps: 
       - name: Checking out code
@@ -34,8 +34,11 @@ jobs:
           script: |
             # 1. Bajar la última imagen de Docker Hub
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
-            # 2. Detener y borrar el contenedor actual si existe
+            
+            # 2. Detener y borrar el contenedor actual si existe para evitar conflictos de nombre
             docker stop flask-app || true
             docker rm flask-app || true
-            # 3. Arrancar el nuevo contenedor
+            
+            # 3. Arrancar el nuevo contenedor SIN volúmenes externos
+            # Esto usa la base de datos 'coches.db' que ya va dentro de la imagen
             docker run -d --name flask-app -p 80:5000 ${{ secrets.DOCKER_HUB_USERNAME }}/practica-iaw-flask:latest
